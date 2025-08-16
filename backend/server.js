@@ -10,18 +10,16 @@ const http = require("http");
 
 const server = http.createServer(app) ;
 
-// app.use(cors({
-//     origin:"http://localhost:3000",
-//     credentials:true,
-//     methods:["GET","POST"]
-// }))
 
 
-const io = new Server(server,cors({
-    origin:"*",
-    credentials:true,
-    methods:["GET","POST"]
-}));
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    credentials: true,
+    methods: ["GET", "POST"]
+  }
+});
+
 
 io.on('connection',(socket)=>{
     console.log("User Connected :",socket.id);
